@@ -1,0 +1,8 @@
+gradio
+langchain
+faiss-cpu
+sentence-transformers
+pypdf
+huggingface_hub
+langchain-community
+PyPDF2
