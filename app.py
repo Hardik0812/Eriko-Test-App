@@ -1,3 +1,6 @@
+from fastapi import FastAPI
+import uvicorn
+import os
 import gradio as gr
 import os
 import time
@@ -144,11 +147,17 @@ def demo():
             outputs=[chatbot, query_input],
             show_progress="minimal"
         )
-    app.launch()
+    return app
+
+
 
 if __name__ == "__main__":
-    app = demo()
-    port = int(os.environ.get("PORT", "7860"))
-    print(f"Binding Gradio on 0.0.0.0:{port}", flush=True)
-    # queue() helps avoid blocking during model downloads on small instances
-    app.queue().launch(server_name="0.0.0.0", server_port=port, show_api=False)
+    ui = demo()
+    port = int(os.environ.get("PORT", "8000"))
+    print(f"[boot] Gradio binding 0.0.0.0:{port}", flush=True)
+    ui.queue().launch(
+        server_name="0.0.0.0",
+        server_port=port,
+        show_api=False,
+        share=False
+    )

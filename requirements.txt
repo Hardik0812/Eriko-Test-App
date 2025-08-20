@@ -1,4 +1,6 @@
 gradio
+fastapi
+uvicorn
 langchain
 faiss-cpu
 sentence-transformers
