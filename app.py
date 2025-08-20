@@ -147,4 +147,8 @@ def demo():
     app.launch()
 
 if __name__ == "__main__":
-    demo()
+    app = demo()
+    port = int(os.environ.get("PORT", "7860"))
+    print(f"Binding Gradio on 0.0.0.0:{port}", flush=True)
+    # queue() helps avoid blocking during model downloads on small instances
+    app.queue().launch(server_name="0.0.0.0", server_port=port, show_api=False)
